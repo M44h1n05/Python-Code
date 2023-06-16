@@ -1,0 +1,161 @@
+#creates an empty list called customerdetails
+CustomerDetails = []
+#prints out a message #customer details
+print("--- customer details---")
+#variable name is created with an input for user to enter
+name = input("Enter your name: ")
+#variable length is created which checks the length of characters in varaible name
+length = len(name)
+#variable called name_count is assigned by length
+name_count = length
+#while loop will run until name_count is more than 1 so user must enter a name
+while name_count < 1:
+  #variable name is created with an input for user to enter
+  name = input("Enter your name : ")
+  #variable length is created which checks the length of characters in varaible nam
+  length = len(name)
+  #variable called name_count is assigned by length
+  name_count = length
+while any(i.isdigit() for i in name):
+  print("name can't include number")
+  name = input("enter a name: ")
+
+#variable address is created with an input for user to enter
+address = input("Enter your address: ")
+#variable length2 is created which checks the length of characters in varaible address
+length2 = len(address)
+#variable called address_count is assigned by length2
+address_count = length2
+#while loop will run until address_count is more than 1 so user must enter an address
+while address_count < 1:
+  #variable address is created with an input for user to enter
+  address = input("Enter your address: ")
+  #variable length2 is created which checks the length of characters in varaible address
+  length2 = len(address)
+  #variable called address_count is assigned by length2
+  address_count = length2
+  #while loop is name and will run until address_count is more than 1 so user must enter an address
+
+#variable number is created with an input for user to enter
+number = input("Enter your phone number: ")
+#variable length3 is created which checks the length of characters in varaible number
+length3 = len(number)
+#variable called address_count is assigned by length3
+number_count = length3
+#while loop will run until number_count is more than 1 so user must enter thier number
+while number_count < 1:
+  #variable number is created with an input for user to enter
+  number = input("Enter your phone number: ")
+  #variable length3 is created which checks the length of characters in varaible number
+  length3 = len(number)
+  #variable called number_count is assigned by length3
+  number_count = length3
+# if loop is created and will run if variable number is a string value
+if number == str():
+  #variable number is created with an input for user to enter
+  number = input("Enter your phone number : ")
+  #variable length3 is created which checks the length of characters in varaible number
+  length3 = len(number)
+  #variable called address_count is assigned by length3
+  number_count = length3
+while not number.isnumeric() or len(number) != 11:
+  print("number must be 11 digits")
+  number = input("Enter your number: ")
+
+#value assigned to varaible name is now added to CustomerDetails list
+CustomerDetails.append(name)
+#value assigned to varaible address is now added to CustomerDetails list
+CustomerDetails.append(address)
+#value assigned to varaible number is now added to CustomerDetails list
+CustomerDetails.append(number)
+
+#prints out list which is assined by user in earlier inputs
+print("Customer details:", CustomerDetails)
+
+cars = {
+  "Lamborghini Hurrucan": 59,
+  "Lamborghini Gallardo": 59,
+  "Porsche": 49,
+  "Audi A5": 39,
+  "Bmw I8": 39,
+  "Ferrari F40": 38,
+  "Lotus Elise": 30,
+}
+
+EXTRA_LAP_COST = 15
+selected_cars = []
+extra_laps_list = []
+car_price_list = []
+
+laps_bill_price = 0
+
+# Skip customer details part
+# Ask the user how many cars the customer wants to drive
+how_many_cars = int(
+  input("Enter the number of cars the customer wants to drive: "))
+#Output all of the cars available to drive
+while how_many_cars <2 and how_many_cars >5:
+  how_many_cars = int(input("Enter the number of cars the customer wants to drive: "))
+
+print("Here is the list of available cars to drive:")
+print(",".join(cars.keys()))
+
+
+# For how many cars the customer wants to drive..
+for x in range(how_many_cars):
+  # Ask for the name of a car they want to drive
+  chosen_car = input("Enter the name of the car you want to drive: ").title()
+
+  # Get the car by it names from the dictionary
+  does_car_exist = cars.get(chosen_car)
+  # If the car does not exist..
+  while does_car_exist == None:
+    print("Invalid car name! Please choose a car from the list.")
+    # Re-prompt the user to enter the car name again.
+    chosen_car = input(
+      "Enter the name of the car you want to drive:  ").title()
+    does_car_exist = cars.get(chosen_car)
+
+    # If the car was already chosen..
+  while chosen_car in selected_cars:
+    print("The customer has already selected to drive: " + chosen_car +
+          ", please choose a different car.")
+    # Re-prompt the user to enter the car name again.
+    chosen_car = input("Enter the name of the car you want to drive: ").title()
+
+  extra_laps = 0
+  wants_extra_laps = input("Does the customer want extra laps (y/n)?: ")
+  if wants_extra_laps.lower() == "yes" or wants_extra_laps.lower() == "y":
+    extra_laps = int(
+      input("Enter the number of extra laps for " + chosen_car + "?: "))
+
+# Add the car to the selected cars to drive.
+  print("Added", chosen_car, "to driving list.")
+  selected_cars.append(chosen_car)
+  car_price_list.append(does_car_exist)
+  extra_laps_list.append(extra_laps)
+
+print("\n You have selected the following cars listed below:")
+print(", ".join(selected_cars))
+print("\n laps displayed in a list:", extra_laps_list)
+print("\n Car prices displayed in a list:", car_price_list)
+
+for i in range(how_many_cars):
+  Extralaps = extra_laps_list[i]
+  price = Extralaps * EXTRA_LAP_COST
+  print("\n", Extralaps, "laps x £15 =", (price))
+  laps_bill_price += price
+
+for y in selected_cars:
+  car_index = selected_cars.index(y)
+  price = car_price_list[car_index]
+  print(y + " -", (price))
+
+  print("laps total", (laps_bill_price))
+  print("cars total 3 laps included =", (sum(car_price_list)))
+
+  total = laps_bill_price + sum(car_price_list)
+  print("\n Total  =", (total))
+
+#ext , empty x 3 , too much entry, too less entry, out of range
+#boun , low , high
