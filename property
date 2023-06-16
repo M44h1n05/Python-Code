@@ -1,0 +1,116 @@
+employee_name = []
+employee_id = []
+property_sold = []
+
+staff_counter = 0
+
+total_pro_sold = 0
+total_comm = 0
+
+EmployeeList = []
+Property = []
+EmployeeCommissions = []
+EmployeeRanking = []
+PropertyRanking = []
+CommissionRanking = []
+
+PropertyNumber = 0
+TotalProperty = 0
+
+weekly_staff = int(input("enter the amount of staff working this week 2-5: "))
+
+while weekly_staff < int("2") or weekly_staff > int("5"):
+  weekly_staff = int(
+    input("enter the amount of staff working this week 2-5: "))
+print("you have", weekly_staff, "emloyees working")
+staff_counter = weekly_staff
+
+for i in range(0, staff_counter):
+  name = input("enter employee name: ")
+  length = len(customer_name)
+  employee_name.append(name)
+  id = input("enter employee id: ")
+  employee_id.append(id)
+  pro_sold = int(input("how many properties has employee sold: "))
+  property_sold.append(pro_sold)
+
+print(employee_name, employee_id, property_sold)
+
+commission = 500
+
+if weekly_staff == 2:
+  first_sales = (property_sold[0])
+  second_sales = (property_sold[1])
+  total_pro_sold = first_sales + second_sales
+
+elif weekly_staff == 3:
+  first_sales = (property_sold[0])
+  second_sales = (property_sold[1])
+  third_sales = (property_sold[2])
+  total_pro_sold = first_sales + second_sales + third_sales
+
+elif weekly_staff == 4:
+  first_sales = (property_sold[0])
+  second_sales = (property_sold[1])
+  third_sales = (property_sold[2])
+  fourth_sales = (property_sold[3])
+  total_pro_sold = first_sales + second_sales + third_sales + fourth_sales
+
+elif weekly_staff == 5:
+  first_sales = (property_sold[0])
+  second_sales = (property_sold[1])
+  third_sales = (property_sold[2])
+  fourth_sales = (property_sold[3])
+  fith_sales = (property_sold[4])
+  total_pro_sold = first_sales + second_sales + third_sales + fourth_sales + fith_sales
+
+sale_comm = pro_sold * 500
+total_comm2 = sale_comm + total_comm * weekly_staff
+
+EmployeeCredentials = employee_name + employee_id
+
+EmployeeCom = PropertyNumber * 500
+
+EmployeeCommissions.append(EmployeeCom)
+CommissionRanking.append(EmployeeCom)
+EmployeeList.append(EmployeeCredentials)
+EmployeeRanking.append(EmployeeCredentials)
+Property.append(PropertyNumber)
+PropertyRanking.append(PropertyNumber)
+
+EmployeePropertyRank = [
+  x for _, x in sorted(zip(PropertyRanking, EmployeeRanking))
+]
+
+EmployeePropertyRank.sort(reverse=True)
+
+PropertyRanking.sort(reverse=True)
+
+EmployeeRank1 = EmployeeRanking[0]
+PropertyRank1 = PropertyRanking[0]
+CommissionsRank1 = CommissionRanking[0]
+EPRank1 = EmployeePropertyRank[0]
+
+Bonus = CommissionsRank1 * 15 / 100
+BonusCommission = CommissionsRank1 + Bonus
+
+total_comm = sum(EmployeeCommissions)
+BonusCommissionExtra = BonusCommission - CommissionsRank1
+CompanyCommission = total_comm + BonusCommissionExtra
+
+TotalProperty = sum(Property)
+
+total_comm2 = total_comm + sale_comm * weekly_staff
+
+print("sale commission is :£", sale_comm)
+print("total commission is :£", total_comm2)
+print("")
+print('-EMPLOYEES: ', EmployeeList)
+print('-PROPERTY SOLD PER PERSON: ', property_sold)
+print('-COMMISSIONS PER PERSON: £', sale_comm)
+print('-COMPANY COMMISSION TO PAY: £', total_comm2)
+print(
+  '-TOTAL PROPERTY SOLD: ',
+  total_pro_sold,
+)
+print('-TOP EMPLOYEE BONUS PAYMENT (+15%): £', Bonus)
