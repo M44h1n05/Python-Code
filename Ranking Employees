@@ -1,0 +1,120 @@
+EmployeeList = []
+Property = []
+EmployeeCommissions = []
+EmployeeRanking = []
+PropertyRanking = []
+CommissionRanking = []
+
+PropertyNumber = 0
+TotalProperty = 0
+
+#Employee Credentials - Information is added to the system through a series of input commands. They will ask for the following:
+#The number of employees to record - this governs how many times a FOR Loop will run. This loop encompasses all upcoming input data.
+#The employee name,
+#The employee ID - can be a series of numbers, letters and characters,
+#The employee's total sold property within a given timeframe - this must be an integer.
+#All inputted data will be appended to lists for the appropriate data (e.g. Employee and property data are appended to different tables).
+
+#All Inputs undergo a check - if an input would cause an error, the program outputs an error message and repeats the input until a correct input is made.
+while True:
+    try:
+        EmployeeCount  = int(input("enter the amount of staff working this week 2-5: "))
+    except ValueError:
+        print('input must be between 2 and 5')
+        print('')
+        continue
+    else:
+        break
+
+print("you have", EmployeeCount, "emloyees working")
+print('')
+
+for i in range(EmployeeCount):
+    while True:
+        try:
+            EmployeeName  = input('Enter Employee Name: ')
+        except ValueError:
+            print('Value must be a String.')
+            print('')
+            continue
+        else:
+            break
+
+    while True:
+        try:
+            EmployeeID = input('Enter Employee ID: ')
+        except ValueError:
+            print('Value must be a String.')
+            print('')
+            continue
+        else:
+            break
+
+    while True:
+        try:
+            PropertyNumber = int(input('Enter Total Property Sold by Employee: '))
+        except ValueError:
+            print('Value must be an Integer.')
+            print('')
+            continue
+        else:
+            break
+    print('')
+    EmployeeCredentials = EmployeeName + EmployeeID
+    
+    #Commission Calculation - Employees
+    #Each employee's commissions are calculated by their property number times a designated commission value (£500, in this case).
+    #This gives the employee's commission value, which will be appended to a list.
+    EmployeeCom = PropertyNumber * 500
+
+    #Data appending to lists occur here.
+    EmployeeCommissions.append(EmployeeCom)
+    CommissionRanking.append(EmployeeCom)
+    EmployeeList.append(EmployeeCredentials)
+    EmployeeRanking.append(EmployeeCredentials)
+    Property.append(PropertyNumber)
+    PropertyRanking.append(PropertyNumber)
+
+#Employee Ranking - To sort employees by their property count, both lists are linked together using zip.
+#This ensures that employee names stay with their associated property count during the sorting process.
+EmployeePropertyRank = [x for _,x in sorted(zip(PropertyRanking,EmployeeRanking))]
+
+#The zipped lists are then sorted in descending order - highest to lowest - in order to find the employee with the highest property count.
+EmployeePropertyRank.sort(reverse=True)
+
+#Bonus Calculation - To add the 15% bonus to the highest performing employee, they need to be assigned a variable by searching for the first object in the property, employee and commission lists.
+
+PropertyRanking.sort(reverse=True)
+
+EmployeeRank1 = EmployeeRanking[0]
+PropertyRank1 = PropertyRanking[0]
+CommissionsRank1 = CommissionRanking[0]
+EPRank1 = EmployeePropertyRank[0]
+
+#The bonus is then calculated from the commission using the below calculation, then is assigned a variable.
+Bonus15 = CommissionsRank1*15 /100
+BonusCommission = CommissionsRank1 + Bonus15
+
+#Commission Calculation - Company: To gain the commissions the company must pay, the program needs to add the total employee commissions, as well as the 15% bonus from the rank #1 employee.
+#This is done using the Commissions list, as well as a small equation to find the extra 15% added as a bonus.
+TotalCommissions = sum(EmployeeCommissions)
+BonusCommissionExtra = BonusCommission - CommissionsRank1
+CompanyCommission = TotalCommissions + BonusCommissionExtra
+
+#Total Property is summed up for the upcoming status report.
+TotalProperty = sum(Property)
+
+#Status Report Output - Finally, a status report is printed out containing all relevant information, such as employees, commissions and the highest ranking employee.
+
+print('')
+print('===STATUS REPORT===')
+print('-EMPLOYEES: ', EmployeeList)
+print('-PROPERTY SOLD PER PERSON: ', Property)
+print('-COMMISSIONS PER PERSON: ', EmployeeCommissions)
+print('-COMPANY COMMISSION TO PAY: £', CompanyCommission)
+print('-TOTAL PROPERTY SOLD: ', TotalProperty, 'UNITS')
+print('')
+print('-TOP EMPLOYEE: ', EPRank1)
+print('-UNITS SOLD: ', PropertyRank1)
+print('-TOP EMPLOYEE BONUS PAYMENT (+15%): £', BonusCommission)
+print('===-------------===')
