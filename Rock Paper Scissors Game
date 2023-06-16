@@ -1,0 +1,42 @@
+round = 0
+points = 0
+
+#random import
+import random
+comp_choice = random.choice(["1", "2", "3"])
+
+user_choice = input("choose either : rock , paper or scissors: ")
+#coverter
+if comp_choice == "1":
+    comp_choice = "rock"
+elif comp_choice == "2":
+    comp_choice = "paper"
+else:
+    comp_choice = "scissors"
+
+print("computer chooses:", comp_choice)
+
+#win or lose 
+if user_choice == comp_choice:
+    print("draw, no points awarded")
+elif user_choice == "rock":
+    if comp_choice == "scissors":
+        print("You won! and get 1 points")
+        points = points + 1
+    else:
+        print("You lose, no points awarded")
+elif user_choice == "paper":
+    if comp_choice == "rock":
+        print("You won! and get 1 points")
+        points = points + 1
+    else:
+        print("You lose, no points awarded")
+elif user_choice == "scissors":
+    if comp_choice == "paper":
+        print("You won! and get 1 points")
+        points = points + 1
+    else:
+        print("You lose, no points awarded")
+
+print("you have", points, "point")
+
