@@ -1,0 +1,14 @@
+number_one = int(input("Enter your first number "))
+number_two = int(input("Enter your second number "))
+
+operation = input("would you like to add , subtract , divide or multiply ? ")
+
+if operation == "add" or operation == "+" :
+    print(number_one + number_two)
+elif operation == "subtract" or operation == "-" :
+    print(number_one - number_two)
+elif operation == "divide" or operation == "/" :
+    print(number_one / number_two)
+else :
+    print(number_one * number_two)
+                
