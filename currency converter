@@ -1,0 +1,122 @@
+total_cost = 0
+fee = 0 
+conv_amount = 0
+staff = False
+
+transfer_amount = int(input("how much gbp would you like to transer ?"))
+
+while transfer_amount < int (1):
+  print("please enter a higher value")
+  transfer_amount = int(input("re-enter a higher amount:"))
+while transfer_amount > (2500):
+  print("please enter a higher value")
+  transfer_amount = int(input("re-enter a lower amount:"))  
+else:
+  print("you are transfering GBP :",transfer_amount)
+
+def currencies ():
+  print("below are all the currencies which you can transfer GBP to")
+  print(" American_Dollars (USD) \n Euros (EUR) \n Brazilian_Real (BRL)\nJapanese_Yen (JPY) \nTurkish_Lira (TRY)")
+
+currencies()
+
+print("please choose a currency to transfer to from the list above (eg: usd / eur / brl / jpy / try)")
+currency_choice = input()
+
+if currency_choice == "usd":
+    print("you are converting gbp to american dollars")
+elif currency_choice == "eur":
+    print("you are converting gbp to euros")
+elif currency_choice == "brl":
+    print("you are converting gbp to brazilian real")
+elif currency_choice == "jpy":
+    print("you are converting gbp to japanese yen")
+elif currency_choice == "try":
+    print("you are converting gbp to turkish lira")
+else:
+    print("sorry an error occured please re run the code and enter a valid currency listed above")
+    quit()
+
+print("you are converting ", transfer_amount, "gbp in to", currency_choice)
+
+print("the table below shows the value of 1 GBP")
+currencylist = [
+    ["USD", 1.40],
+    ["EUR", 1.14],
+    ["BRL", 4.77],
+    ["JPY", 151.05],
+    ["TRY", 5.68 ], ]
+
+print(": currency code : amount : ")
+
+for item in currencylist:
+    print(":" , item[0], " "* (3 - len(item[0])), ":", item[1], " "* (6 - len(item[0])))
+
+if currency_choice == "usd":
+    print ("1 GBP -->  1.40 USD")
+    conv_amount = transfer_amount * 1.40
+    print("Your transfer amount is equal to ",conv_amount, currency_choice )
+elif currency_choice == "eur":
+    print ("1 GBP -->  1.14 EUR")
+    conv_amount = transfer_amount * 1.14
+    print("Your transfer amount is equal to ",conv_amount, currency_choice )
+elif currency_choice == "brl":
+    print ("1 GBP -->  4.77 BRL")
+    conv_amount = transfer_amount * 4.77
+    print("Your transfer amount is equal to ",conv_amount, currency_choice )
+elif currency_choice == "jpy":
+    print ("1 GBP -->  151.05 JPY")
+    conv_amount = transfer_amount * 151.05
+    print("Your transfer amount is equal to ",conv_amount, currency_choice )
+elif currency_choice == "try":
+    print ("1 GBP -->  5.68 TRY")
+    conv_amount = transfer_amount * 5.68
+    print("Your transfer amount is equal to ",conv_amount, currency_choice )
+else:
+    print("sorry an error occured please re run the code and enter a valid currency listed above")
+    quit()
+
+print("the table below shows the transaction fees")
+transaction_fee = [
+    ["upto 300 GBP", 3.5],
+    ["over 300 GBP", 3],
+    ["over 750 GBP", 2.5],
+    ["over 1000 GBP", 2],
+    ["over 2000 GBP", 1.5 ], ]
+
+print(": amount : fee rate : ")
+
+for item in transaction_fee:
+    print(":" , item[0], " "* (3 - len(item[0])), ":", item[1], " "* (6 - len(item[0])))
+
+
+if transfer_amount <=  300:
+    fee = 3.5
+    total_cost = transfer_amount * fee
+elif transfer_amount >(300) and transfer_amount <(750):
+    fee = 3
+    total_cost = transfer_amount * fee
+elif transfer_amount >= (750) and transfer_amount <(1000):
+    fee = 2.5
+    total_cost = transfer_amount * fee
+elif transfer_amount >= (1000) and transfer_amount <(2000):
+    fee = 2
+    total_cost = transfer_amount * fee
+else:
+    fee = 1.5
+    total_cost = transfer_amount * fee
+
+print("your transaction fee is: ",fee)
+print("your total cost =",total_cost)
+
+staff = input("Are you a member of staff? yes / no ")
+if staff == "yes" or staff == "YES":
+    staff = True
+else:
+    print("You are not a member of staff therefore, you are not allegible for discount")
+
+if staff == True:
+    print("members of staff get a 5% discount")
+    total_cost = total_cost /1.05
+    print("Your discounted amount in gbp is", total_cost)
+    
